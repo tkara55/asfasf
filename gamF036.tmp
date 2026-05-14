@@ -1,0 +1,46 @@
+[gd_scene load_steps=4 format=3 uid="uid://dxte31ht721uk"]
+
+[ext_resource type="Script" path="res://game.gd" id="1_tn44f"]
+[ext_resource type="Script" path="res://stats.gd" id="3_eyyqe"]
+[ext_resource type="Texture2D" uid="uid://d1kxb5m1mixro" path="res://stand_01_00sout.obj.png" id="3_pp2xt"]
+
+[node name="Game" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_tn44f")
+
+[node name="Stats" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 23.0
+grow_horizontal = 2
+mouse_filter = 2
+script = ExtResource("3_eyyqe")
+
+[node name="Label" type="Label" parent="Stats"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "0 points
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0442708
+anchor_top = 0.0725309
+anchor_right = 0.321181
+anchor_bottom = 1.64198
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_pp2xt")
+metadata/_edit_use_anchors_ = true
+
+[connection signal="points_changed" from="." to="Stats" method="_on_game_points_changed"]

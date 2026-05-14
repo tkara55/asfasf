@@ -1,0 +1,147 @@
+[gd_scene load_steps=5 format=3 uid="uid://dxte31ht721uk"]
+
+[ext_resource type="Script" path="res://scripts/game.gd" id="1_gtfu8"]
+[ext_resource type="Texture2D" uid="uid://bptuaj0diiwns" path="res://assets/istockphoto-2200200188-612x612.jpg" id="2_lihi2"]
+[ext_resource type="Script" path="res://scripts/stats.gd" id="2_qtilp"]
+[ext_resource type="Texture2D" uid="uid://cnpxl5uwq82qk" path="res://assets/Sprite-0001.png" id="3_wkkrq"]
+
+[node name="Game" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_gtfu8")
+
+[node name="Backgorund" type="TextureRect" parent="."]
+modulate = Color(0.46, 0.0552, 0.0552, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_lihi2")
+flip_h = true
+
+[node name="Character" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 27.0
+offset_top = -504.0
+offset_right = 740.0
+offset_bottom = 209.0
+grow_vertical = 0
+scale = Vector2(0.709307, 0.709307)
+texture = ExtResource("3_wkkrq")
+
+[node name="Stats" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 55.0
+grow_horizontal = 2
+mouse_filter = 2
+script = ExtResource("2_qtilp")
+
+[node name="Label" type="Label" parent="Stats"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "0 points
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -300.0
+offset_top = -204.0
+offset_bottom = 144.0
+grow_horizontal = 0
+grow_vertical = 2
+horizontal_scroll_mode = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 5
+
+[node name="ResetProgressionButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 452.0
+offset_top = 578.0
+offset_right = 718.0
+offset_bottom = 625.0
+theme_override_font_sizes/font_size = 28
+text = "RESET EVERYTHING"
+
+[node name="UpgradesMenuButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 778.0
+offset_top = 595.0
+offset_right = 786.0
+offset_bottom = 603.0
+theme_override_font_sizes/font_size = 20
+text = "UPGRADES"
+
+[node name="TooltipPanel" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = -224.0
+offset_top = 77.0
+offset_right = -74.0
+offset_bottom = 205.0
+color = Color(0, 0, 0, 1)
+
+[node name="TooltipLabel" type="Label" parent="TooltipPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "isim"
+horizontal_alignment = 1
+
+[node name="StatsHover" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 32.0
+offset_bottom = 32.0
+color = Color(0.222026, 0.402348, 1, 1)
+
+[node name="StatsPanel" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = 35.0
+offset_top = 34.0
+offset_right = 337.0
+offset_bottom = 201.0
+color = Color(0, 0, 0, 1)
+
+[node name="PassiveIncomeLabel" type="Label" parent="StatsPanel"]
+layout_mode = 0
+offset_left = 14.0
+offset_top = 20.0
+offset_right = 82.0
+offset_bottom = 43.0
+text = "0.0 p/sec"
+
+[node name="AmountsPerClickLabel" type="Label" parent="StatsPanel"]
+layout_mode = 0
+offset_left = 18.0
+offset_top = 54.0
+offset_right = 132.0
+offset_bottom = 77.0
+text = "0.0 click power"
+
+[connection signal="pressed" from="ResetProgressionButton" to="." method="_on_reset_progression_button_pressed"]
+[connection signal="pressed" from="UpgradesMenuButton" to="." method="_on_upgrades_menu_button_pressed"]
+[connection signal="mouse_entered" from="StatsHover" to="." method="_on_stats_hover_mouse_entered"]
+[connection signal="mouse_exited" from="StatsHover" to="." method="_on_stats_hover_mouse_exited"]
